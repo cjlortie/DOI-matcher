@@ -47,18 +47,21 @@ search.1.1 <- read_csv("data/2016-search.csv")
 search.1.2 <- read_csv("data/2017-search.csv")
 net.difference <- anti_join(search.1.2, search.1.1, by = "DOI")
 net.difference <- net.difference %>% select(Title, DOI) #to simplify for a look
-net.difference
+nrow(net.difference) #count of number of differences from consecutive search
+#net.difference #unmute to see list to check anew
+
 
 #Surprise! There are more than 3 differences detected using DOI matching.
 
 
 #Test process using another vector identifier####
 net.difference <- anti_join(search.1.2, search.1.1, by = "Title")
-net.difference <- net.difference %>% select(Title, DOI)
-net.difference
+net.difference <- net.difference %>% select(Title, DOI) #to simplify for a look
+nrow(net.difference) #count of number of differences from consecutive search
+#net.difference #unmute to see list to check anew
 ```
 
 ###Interpretation
-1. Topological count returns from Web of Science at least to do not necessarily estimate extent of differences.  
-2. Using this workflow or approach ensures a more transparent repeat search and matching process (siumilar to the PRISMA goals for single search events).  
-3. There is likely sensitivity and bias in this process that use of R can help mitigate.
+1. Topological count returns from at the resource Web of Science do not necessarily estimate extent of differences.  
+2. Using this workflow or approach ensures a more transparent repeat search and matching process (siumilar to the PRISMA goals for singlular-search events).  
+3. There is likely sensitivity and bias in this process that use of R can help mitigate (for instance, I was tempted to just look for 3 differences based on total number of hit differences without checking search returns in detail in this test case).

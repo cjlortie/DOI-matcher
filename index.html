@@ -244,8 +244,8 @@ library(tidyverse)
 searches &lt;- read_csv(&quot;data/search.terms.csv&quot;)
 library(DT)
 datatable(searches) </code></pre>
-<div id="htmlwidget-c186094ed6d01b7fd4c2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c186094ed6d01b7fd4c2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["1","2","3","4","5","6","final"],["plant facilitat* niche* arid*","plant facilitat* niche* desert*","nurse plant* niche* arid","nurse plant* niche* desert","positive interact* niche* desert*","positive interact* niche* arid*","total after duplicates"],[47,32,16,11,21,29,53],[50,31,19,11,21,35,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>search<\/th>\n      <th>terms<\/th>\n      <th>hits.2016<\/th>\n      <th>hits.2017<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f9c2f70f741c08e1f541" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f9c2f70f741c08e1f541">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["1","2","3","4","5","6","final"],["plant facilitat* niche* arid*","plant facilitat* niche* desert*","nurse plant* niche* arid","nurse plant* niche* desert","positive interact* niche* desert*","positive interact* niche* arid*","total after duplicates"],[47,32,16,11,21,29,53],[50,31,19,11,21,35,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>search<\/th>\n      <th>terms<\/th>\n      <th>hits.2016<\/th>\n      <th>hits.2017<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#Test case for first row of terms only from this specific literature search####
 
 #Wrangle using dyplr functions####
@@ -253,70 +253,29 @@ search.1.1 &lt;- read_csv(&quot;data/2016-search.csv&quot;)
 search.1.2 &lt;- read_csv(&quot;data/2017-search.csv&quot;)
 net.difference &lt;- anti_join(search.1.2, search.1.1, by = &quot;DOI&quot;)
 net.difference &lt;- net.difference %&gt;% select(Title, DOI) #to simplify for a look
-net.difference</code></pre>
-<pre><code>## # A tibble: 19 × 2
-##                                                                          Title
-##                                                                          &lt;chr&gt;
-## 1  Plant Growth Promoting Rhizobacteria Associated to Halophytes: Potential Ap
-## 2  Do hybrid-origin polyploid amphibians occupy transgressive or intermediate 
-## 3  Same nurse but different time: temporal divergence in the facilitation of p
-## 4            Aridity increases below-ground niche breadth in grass communities
-## 5  Size-related change in Nitraria sphaerocarpa patches shifts the shrub-annua
-## 6  Species-specific facilitation, ontogenetic shifts and consequences for plan
-## 7  Facilitation contributes to Mediterranean woody plant diversity but does no
-## 8  Ontogenetic resource-use strategies in a rare long-lived cycad along enviro
-## 9  Inter-specific differences in the dynamics of water use and pulse-response 
-## 10 Ecophysiology and nutritional niche of the bilby (Macrotis lagotis), an omn
-## 11 Beyond the classical nurse species effect: diversity assembly in a Mediterr
-## 12 Ecosystem engineering effects on species diversity across ecosystems: a met
-## 13 Parasitoid fig-wasp evolutionary diversification and variation in ecologica
-## 14 Positive interactions, discontinuous transitions and species coexistence in
-## 15 Building the crops of tomorrow: advantages of symbiont-based approaches to 
-## 16 Evolutionary bursts in Euphorbia (Euphorbiaceae) are linked with photosynth
-## 17                          Evolution of local facilitation in arid ecosystems
-## 18 The role of plant interactions in the restoration of degraded ecosystems: a
-## 19 Refining the stress-gradient hypothesis for competition and facilitation in
-## # ... with 1 more variables: DOI &lt;chr&gt;</code></pre>
-<pre class="r"><code>#Surprise! There are more than 3 differences detected using DOI matching.
+nrow(net.difference) #count of number of differences from consecutive search</code></pre>
+<pre><code>## [1] 19</code></pre>
+<pre class="r"><code>#net.difference #unmute to see list to check anew
+
+
+#Surprise! There are more than 3 differences detected using DOI matching.
 
 
 #Test process using another vector identifier####
 net.difference &lt;- anti_join(search.1.2, search.1.1, by = &quot;Title&quot;)
-net.difference &lt;- net.difference %&gt;% select(Title, DOI)
-net.difference</code></pre>
-<pre><code>## # A tibble: 20 × 2
-##                                                                          Title
-##                                                                          &lt;chr&gt;
-## 1  Plant Growth Promoting Rhizobacteria Associated to Halophytes: Potential Ap
-## 2  Do hybrid-origin polyploid amphibians occupy transgressive or intermediate 
-## 3  Same nurse but different time: temporal divergence in the facilitation of p
-## 4            Aridity increases below-ground niche breadth in grass communities
-## 5  Size-related change in Nitraria sphaerocarpa patches shifts the shrub-annua
-## 6  Species-specific facilitation, ontogenetic shifts and consequences for plan
-## 7  Facilitation contributes to Mediterranean woody plant diversity but does no
-## 8  Ontogenetic resource-use strategies in a rare long-lived cycad along enviro
-## 9  Inter-specific differences in the dynamics of water use and pulse-response 
-## 10 Ecophysiology and nutritional niche of the bilby (Macrotis lagotis), an omn
-## 11 Beyond the classical nurse species effect: diversity assembly in a Mediterr
-## 12 Ecosystem engineering effects on species diversity across ecosystems: a met
-## 13 Parasitoid fig-wasp evolutionary diversification and variation in ecologica
-## 14 Positive interactions, discontinuous transitions and species coexistence in
-## 15 Building the crops of tomorrow: advantages of symbiont-based approaches to 
-## 16 Evolutionary bursts in Euphorbia (Euphorbiaceae) are linked with photosynth
-## 17                          Evolution of local facilitation in arid ecosystems
-## 18 Extreme stresses, niches, and positive species interactions along stress gr
-## 19 The role of plant interactions in the restoration of degraded ecosystems: a
-## 20 Refining the stress-gradient hypothesis for competition and facilitation in
-## # ... with 1 more variables: DOI &lt;chr&gt;</code></pre>
+net.difference &lt;- net.difference %&gt;% select(Title, DOI) #to simplify for a look
+nrow(net.difference) #count of number of differences from consecutive search</code></pre>
+<pre><code>## [1] 20</code></pre>
+<pre class="r"><code>#net.difference #unmute to see list to check anew</code></pre>
 </div>
 <div id="interpretation" class="section level3">
 <h3>Interpretation</h3>
 <ol style="list-style-type: decimal">
-<li>Topological count returns from Web of Science at least to do not necessarily estimate extent of differences.<br />
+<li>Topological count returns from at the resource Web of Science do not necessarily estimate extent of differences.<br />
 </li>
-<li>Using this workflow or approach ensures a more transparent repeat search and matching process (siumilar to the PRISMA goals for single search events).<br />
+<li>Using this workflow or approach ensures a more transparent repeat search and matching process (siumilar to the PRISMA goals for singlular-search events).<br />
 </li>
-<li>There is likely sensitivity and bias in this process that use of R can help mitigate.</li>
+<li>There is likely sensitivity and bias in this process that use of R can help mitigate (for instance, I was tempted to just look for 3 differences based on total number of hit differences without checking search returns in detail in this test case).</li>
 </ol>
 </div>
 
