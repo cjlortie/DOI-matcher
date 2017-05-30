@@ -11,7 +11,7 @@ output:
 ---
 <br>  
 
-###A DOI matching mechansism
+###A DOI matching mechanism
 **A brief code snippet and test of matching hits from searches.**  
 Many scientific syntheses use products published online including datasets, images, and traditional publications in journals. Commonly, these objects are assigned a Digital Online Identifier (https://en.wikipedia.org/wiki/Digital_object_identifier). This is an extremely useful mechanism to track and find objects.
 
@@ -23,11 +23,17 @@ In many syntheses, repeat searching for datasets or papers is necessary. This ca
 
 ###Test
 ```{r, literature, warning=FALSE, message=FALSE}
-#Use dplyr and readr to capture search results
+#Use dplyr and readr to capture search results####
 library(tidyverse)
-#Knit a table to see results
+#Topological overview of potential differences in papers using counts
+searches <- read_csv("data/search.terms.csv")
 library(DT)
+datatable(searches) 
 
 #Wrangle using dyplr functions
+search.1 <- read_csv("data/2016-search.csv")
+search.2 <- read_csv("data/2017-search.csv")
+net.difference <- anti_join(search.2, search.1, by = "DOI")
+datatable(na.omit(net.difference))
 
 ```
