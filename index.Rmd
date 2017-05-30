@@ -12,7 +12,7 @@ output:
 <br>  
 
 ###A DOI matching mechanism
-**A brief code snippet and test of matching hits from searches.**  
+**A brief code snippet and test of matching hits from searches using DOIs.**  
 Many scientific syntheses use products published online including datasets, images, and traditional publications in journals. Commonly, these objects are assigned a Digital Online Identifier (https://en.wikipedia.org/wiki/Digital_object_identifier). This is an extremely useful mechanism to track and find objects.
 
 In many syntheses, repeat searching for datasets or papers is necessary. This can be due to evolving volumes of assets over time or exploration of alt-terms to capture the correct, meaningful, and most complete set of relevant evidence. For instance, we have recently completed a systematic review of the research on the concept of niche in deserts (https://cjlortie.github.io/niche.review/).  However, from the time of writing the draft of paper and potential submission, we need to repeat the searches we did using the Web of Science.  This generated a marginally larger set of hits from this resource. Consequently, we now need to match these new hits to the first search. By doing this process in R (after exporting hits from WoS to .csv), we hope to make the process more transparent, rapid, and reproducible for future syntheses.
@@ -20,6 +20,16 @@ In many syntheses, repeat searching for datasets or papers is necessary. This ca
 
 ![](./DOI.jpg)  
 <br>
+
+**Data**  
+A table of total number of hits by search terms with a vector for each search instance.
+Exported lists of search returns from online resource that list DOIs for each instance.  
+
+
+**Meta-data**
+Search terms.  
+Dates of search events.  
+Structure searche-matching iteratively for each row of topological table or merge and do a single dataframe parse.  
 
 ###Test
 ```{r, literature, warning=FALSE, message=FALSE}
@@ -30,10 +40,25 @@ searches <- read_csv("data/search.terms.csv")
 library(DT)
 datatable(searches) 
 
-#Wrangle using dyplr functions
-search.1 <- read_csv("data/2016-search.csv")
-search.2 <- read_csv("data/2017-search.csv")
-net.difference <- anti_join(search.2, search.1, by = "DOI")
-datatable(na.omit(net.difference))
+#Test case for first row of terms only from this specific literature search####
 
+#Wrangle using dyplr functions####
+search.1.1 <- read_csv("data/2016-search.csv")
+search.1.2 <- read_csv("data/2017-search.csv")
+net.difference <- anti_join(search.1.2, search.1.1, by = "DOI")
+net.difference <- net.difference %>% select(Title, DOI) #to simplify for a look
+net.difference
+
+#Surprise! There are more than 3 differences detected using DOI matching.
+
+
+#Test process using another vector identifier####
+net.difference <- anti_join(search.1.2, search.1.1, by = "Title")
+net.difference <- net.difference %>% select(Title, DOI)
+net.difference
 ```
+
+###Interpretation
+1. Topological count returns from Web of Science at least to do not necessarily estimate extent of differences.  
+2. Using this workflow or approach ensures a more transparent repeat search and matching process (siumilar to the PRISMA goals for single search events).  
+3. There is likely sensitivity and bias in this process that use of R can help mitigate.
