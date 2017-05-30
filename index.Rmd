@@ -1,0 +1,33 @@
+---
+title: ""
+output:
+  html_document:
+    theme: yeti
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+<br>  
+
+###A DOI matching mechansism
+**A brief code snippet and test of matching hits from searches.**  
+Many scientific syntheses use products published online including datasets, images, and traditional publications in journals. Commonly, these objects are assigned a Digital Online Identifier (https://en.wikipedia.org/wiki/Digital_object_identifier). This is an extremely useful mechanism to track and find objects.
+
+In many syntheses, repeat searching for datasets or papers is necessary. This can be due to evolving volumes of assets over time or exploration of alt-terms to capture the correct, meaningful, and most complete set of relevant evidence. For instance, we have recently completed a systematic review of the research on the concept of niche in deserts (https://cjlortie.github.io/niche.review/).  However, from the time of writing the draft of paper and potential submission, we need to repeat the searches we did using the Web of Science.  This generated a marginally larger set of hits from this resource. Consequently, we now need to match these new hits to the first search. By doing this process in R (after exporting hits from WoS to .csv), we hope to make the process more transparent, rapid, and reproducible for future syntheses.
+<br>  
+
+![](./DOI.jpg)  
+<br>
+
+###Test
+```{r, literature, warning=FALSE, message=FALSE}
+#Use dplyr and readr to capture search results
+library(tidyverse)
+#Knit a table to see results
+library(DT)
+
+#Wrangle using dyplr functions
+
+```
