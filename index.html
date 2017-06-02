@@ -232,9 +232,10 @@ Many scientific syntheses use products published online including datasets, imag
 <br></p>
 <p><strong>Data</strong><br />
 A table of total number of hits by search terms with a vector for each search instance. Exported lists of search returns from online resource that list DOIs for each instance.</p>
-<p><strong>Meta-data</strong> Search terms.<br />
+<p><strong>Meta-data</strong><br />
+Search terms.<br />
 Dates of search events.<br />
-Structure searche-matching iteratively for each row of topological table or merge and do a single dataframe parse.</p>
+Structured search-matching iteratively for each row of topological table or merge and do a single dataframe parse.</p>
 </div>
 <div id="test" class="section level3">
 <h3>Test</h3>
@@ -244,8 +245,8 @@ library(tidyverse)
 searches &lt;- read_csv(&quot;data/search.terms.csv&quot;)
 library(DT)
 datatable(searches) </code></pre>
-<div id="htmlwidget-f9c2f70f741c08e1f541" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f9c2f70f741c08e1f541">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["1","2","3","4","5","6","final"],["plant facilitat* niche* arid*","plant facilitat* niche* desert*","nurse plant* niche* arid","nurse plant* niche* desert","positive interact* niche* desert*","positive interact* niche* arid*","total after duplicates"],[47,32,16,11,21,29,53],[50,31,19,11,21,35,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>search<\/th>\n      <th>terms<\/th>\n      <th>hits.2016<\/th>\n      <th>hits.2017<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-85975d0d636a78bdc229" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-85975d0d636a78bdc229">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7"],["1","2","3","4","5","6","final"],["plant facilitat* niche* arid*","plant facilitat* niche* desert*","nurse plant* niche* arid","nurse plant* niche* desert","positive interact* niche* desert*","positive interact* niche* arid*","total after duplicates"],[47,32,16,11,21,29,53],[50,31,19,11,21,35,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>search<\/th>\n      <th>terms<\/th>\n      <th>hits.2016<\/th>\n      <th>hits.2017<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#Test case for first row of terms only from this specific literature search####
 
 #Wrangle using dyplr functions####

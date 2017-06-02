@@ -26,10 +26,10 @@ A table of total number of hits by search terms with a vector for each search in
 Exported lists of search returns from online resource that list DOIs for each instance.  
 
 
-**Meta-data**
+**Meta-data**  
 Search terms.  
 Dates of search events.  
-Structure searche-matching iteratively for each row of topological table or merge and do a single dataframe parse.  
+Structured search-matching iteratively for each row of topological table or merge and do a single dataframe parse.  
 
 ###Test
 ```{r, literature, warning=FALSE, message=FALSE}
